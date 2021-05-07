@@ -1,16 +1,16 @@
 <?php
-require "connect.php";
+  require "connect.php";
 //require "helpers.php";
 
 $stmt = $db->query("SELECT * from article");
-$concerts = $stmt->fetchAll();
+$article = $stmt->fetchAll();
 ?>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Concerts</title>
+    <title>Liste d'articles</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 </head>
 <body>
@@ -29,15 +29,16 @@ $concerts = $stmt->fetchAll();
                     <th>Tags</th>
                 </tr>
             </thead>
-            <?php foreach($concerts as $concert){ ?>
+            <?php foreach($article as $article){ ?>
                 <tr>
-                    <td><?= afficheDateFR($concert["date"]) ?></td>
-                    <td><?= $concert["lieu"] ?></td>
-                    <td><?= $concert["groupe"] ?></td>
-                    <td><?= $concert["note"] ?></td>
-                    <td>
-                        <a href="delete.php?id=<?= $concert["id"] ?>">Supprimer</a>
-                    </td>
+                    <td><?= $article["titreArticle"] ?></td>
+                    <td><?= afficheDateFR($article["dateCreationArticle"]) ?></td>
+                    <td><?= $article["statueArticle"] ?></td>
+                    <td><?= $article["catégorie"] ?></td>
+                    <td><?= $article["tags"] ?></td>
+                    <!-- <td>
+                        <a href="delete.php?id=<?= $article["id"] ?>">Supprimer</a>
+                    </td> -->
                 </tr>
             <?php } ?>
         </table>
