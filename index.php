@@ -1,6 +1,6 @@
 <?php
   require "connect.php";
-//require "helpers.php";
+  require "helpers.php";
 
 $stmt = $db->query("SELECT * from article");
 $article = $stmt->fetchAll();
@@ -17,7 +17,7 @@ $article = $stmt->fetchAll();
     <div class="container">
         <div class="d-flex justify-content-between mt-3 mb-3">
             <h1>Liste d'articles</h1>
-            <a class="btn btn-primary d-flex align-items-center" href="formulaire.php">+ Créer</a>
+            <a class="btn btn-primary d-flex align-items-center" href="form.php">+ Créer</a>
         </div>
         <table class="table">
             <thead>
@@ -29,16 +29,15 @@ $article = $stmt->fetchAll();
                     <th>Tags</th>
                 </tr>
             </thead>
-            <?php foreach($article as $article){ ?>
+            <?php foreach($article as $value){ ?>
                 <tr>
-                    <td><?= $article["titreArticle"] ?></td>
-                    <td><?= afficheDateFR($article["dateCreationArticle"]) ?></td>
-                    <td><?= $article["statueArticle"] ?></td>
-                    <td><?= $article["catégorie"] ?></td>
-                    <td><?= $article["tags"] ?></td>
-                    <!-- <td>
-                        <a href="delete.php?id=<?= $article["id"] ?>">Supprimer</a>
-                    </td> -->
+                    <td><?= $value["titreArticle"] ?></td>
+                    <td><?= afficheDateFR($value["dateCreationArticle"]) ?></td>
+                    <td><?= $value["statueArticle"] ?></td>
+                    <td><?= $value["idCategorie"] ?></td>
+                    <td>
+                        <a href="modify.php?id=<?= $value["idArticle"] ?>">Modifier</a>
+                    </td>
                 </tr>
             <?php } ?>
         </table>
