@@ -11,13 +11,13 @@
 
     <body>
         <form method="POST" action="dataformulaire.php">
-                  Titre : <br/>
-                <input type="text" name="titre" required/><br/>
-                  Contenu : <br/>
-                <textarea name="contenu" required ></textarea><br/>
-                <input type="submit" name="submit" value="Publier"/>
+            Titre : <br/>
+            <input type="text" name="titre" required/><br/>
+            Contenu : <br/>
+            <textarea name="contenu" required ></textarea><br/>
+            <input type="submit" name="submit" class="btn btn-primary" value="Publier" />
         </form>
-        
     </body>
 
 </html>
+

@@ -17,7 +17,7 @@ $article = $stmt->fetchAll();
     <div class="container">
         <div class="d-flex justify-content-between mt-3 mb-3">
             <h1>Liste d'articles</h1>
-            <a class="btn btn-primary d-flex align-items-center" href="form.php">+ Créer</a>
+            <a class="btn btn-primary d-flex align-items-center" href="formulaire.php">+ Créer</a>
         </div>
         <table class="table">
             <thead>
