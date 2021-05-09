@@ -27,6 +27,7 @@ $article = $stmt->fetchAll();
                     <th>Statue</th>
                     <th>Catégorie</th>
                     <th>Tags</th>
+                    <th>Editer</th>
                 </tr>
             </thead>
             <?php foreach($article as $value){ ?>
@@ -35,8 +36,9 @@ $article = $stmt->fetchAll();
                     <td><?= afficheDateFR($value["dateCreationArticle"]) ?></td>
                     <td><?= $value["statueArticle"] ?></td>
                     <td><?= $value["idCategorie"] ?></td>
+                    <td></td>
                     <td>
-                        <a href="modify.php?id=<?= $value["idArticle"] ?>">Modifier</a>
+                        <a class="btn btn-success active" href="modify.php?id=<?= $value["idArticle"] ?>">Modifier</a>
                     </td>
                 </tr>
             <?php } ?>

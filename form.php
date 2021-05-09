@@ -7,9 +7,13 @@ $errors = [];
 // On verifie que la methode post existe, si elle existe on execute la requete
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(existPOST("titreArticle")){
-       $sql = "INSERT INTO article 
-       (titreArticle, dateCreationArticle, datePublication, statueArticle, contenuArticle) 
-       VALUES (:titreArticle, '2018/10/10', '2019/10/10', 'Publié', 'area')";
+    //    $sql = "INSERT INTO article 
+    //    (titreArticle, dateCreationArticle, datePublication, statueArticle, contenuArticle) 
+    //    VALUES (:titreArticle, '2018/10/10', '2019/10/10', 'Publié', 'area')";
+        $sql = "INSERT INTO article 
+        (titreArticle, dateCreationArticle, statueArticle, contenuArticle, idCategorie) 
+        VALUES (:titreArticle, CURDATE(), :idCategorie, 'areaContenu',
+        (SELECT idCategorie FROM categorie WHERE nomCategorie = 'Cake'))";
 
        $stmt = $db->prepare($sql);
        $res = $stmt->execute([
@@ -21,6 +25,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
           //':idTag' => htmlspecialchars($_POST["idTag"])
        ]);
 
+        $errors = 'Votre article a bien été posté';
    // on verifie si la reponse est vrai ou fausse
    //     if ($res=== true){
             redirectTo("index.php");
@@ -55,10 +60,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                 Titre : <br/>
                 <input type="text" name="titreArticle" placeholder="Titre de l'article" required/><br/>
                 Contenu : <br/>
-                <textarea name="contenuArticle" required ></textarea><br/>
+                <textarea name="contenuArticle" placeholder="Super contenu..." required ></textarea><br/>
                 <input type="submit" name="submit" class="btn btn-primary" value="Publier" />
                 <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
             </form>
+        
         
         
             <div class="card p-4 w-50">
@@ -68,19 +74,19 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                             <label for="input-lieu">Catégorie</label><br/>
                             <select id="input-lieu" name="idCategorie">
                                 <option value="">aucun</option>
-                                <option>patisserie</option>
-                                <option>gateau</option>
-                                <option>vienoiserie</option>
-                                <option>pain</option>
+                                <option>Cake</option>
+                                <option>Sweets</option>
                             </select>
                         </div>
                         <div class="form-group w-50">
                             <label for="input-groupe">tags</label><br/>
                             <select id="input-groupe" name="idTag">
-                                <option>Groupe 1</option>
-                                <option>Groupe 2</option>
-                                <option>Groupe 3</option>
-                                <option>Groupe 4</option>
+                                <option >Jelly</option>
+                                <option>Fudge</option>
+                                <option>Jelly</option>
+                                <option>Beans</option>
+                                <option>Sugar</option>
+                                <option>Fruits</option>
                             </select>
                         </div>
                     
