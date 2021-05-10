@@ -42,7 +42,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     </head>
 
     <body>
-        <div classe="entête">
             <form method="POST">
                 <div class="container d-flex flex-column align-items-center">
                     <h1>Création d'un article</h1>
@@ -124,7 +123,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                         <option>Sweets</option>
                     </select>
             </div>
-        </div>
     </body>
 
 </html>
