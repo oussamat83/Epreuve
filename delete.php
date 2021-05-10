@@ -13,7 +13,7 @@ $id = $_GET["id"];
 $errors = [];
 
 // Check & get db row
-$stmt = $db->prepare("SELECT * FROM article LEFT JOIN categorie ON article.idCategorie = categorie.idCategorie WHERE idArticle = 7;");
+$stmt = $db->prepare("SELECT * FROM article LEFT JOIN categorie ON article.idCategorie = categorie.idCategorie WHERE idArticle = ?;");
 
 $article = null;
 if($stmt->execute([$id])){

@@ -45,6 +45,7 @@ $errors = [];
 
    if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(isset($_POST["titreArticle"])){
+        $statueArticle = "Publié";
         
 
         $stmt = $db->prepare("
@@ -57,7 +58,7 @@ $errors = [];
         $stmt->execute([
             ':titreArticle' => htmlspecialchars($_POST["titreArticle"]), 
             ':contenuArticle' => htmlspecialchars($_POST["contenuArticle"]), 
-            ':statueArticle' => htmlspecialchars($_POST["statueArticle"]), 
+            ':statueArticle' => $statueArticle, 
             ':idArticle' => htmlspecialchars($_POST["idArticle"])
          ]);
 
@@ -79,59 +80,59 @@ $errors = [];
     </head>
 
     <body>
-        <div class="container d-flex flex-column align-items-center">
-            <h1>Modifier l'article</h1>
-            <?php foreach($errors as $error){ ?>
-                <div class="alert alert-warning">
-                    <?= $error ?>
-                </div>
-            <?php } ?>
+            <div class="container d-flex flex-column align-items-center">
+                <h1>Modifier l'article</h1>
+                <?php foreach($errors as $error){ ?>
+                    <div class="alert alert-warning">
+                        <?= $error ?>
+                    </div>
+                <?php } ?>
 
-            <form method="POST" >
-                Titre : <br/>
-                <input type="hidden" value="<?= $valueIdArticle ?>" name="idArticle" placeholder="">
-                <input type="text" value="<?= $valueTitre ?>" name="titreArticle" placeholder="Titre de l'article" required/><br/>
-                Contenu : <br/>
-                <textarea name="contenuArticle" class="form-label"required ><?= $valueArea ?></textarea><br/>
-                <input type="submit" name="submit" class="btn btn-primary" value="Publier" />
-                <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
-                <a class="btn btn-success active" href="delete.php?id=<?= $valueIdArticle ?>">Supprimer</a>
-            </form>
-        
-        
-            <div class="card p-4 w-50">
-                <form method="POST">
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group w-50">
-                            <label for="input-lieu">Catégorie</label><br/>
-                            <select id="input-lieu" name="nomCategorie">
-                                <option>Cake</option>
-                                <option>Sweets</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group w-50">
-                            <label for="input-statutArticle">Statue Article</label><br/>
-                            <select id="input-statutArticle" name="statueArticle">
-                                <option>Publié</option>
-                                <option>Brouillon</option>
-                                <option>Corbeille</option>
-                            </select>
-                       </div>
-
-                        <div class="form-group w-50">
-                            <label for="input-groupe">tags</label><br/>
-                            <select id="input-groupe" name="nomTag">
-                                <option >Jelly</option>
-                                <option>Fudge</option>
-                                <option>Beans</option>
-                            </select>
-                        </div>
-                    </div>  
-                  <button type="submit" class="mt-3 btn btn-primary">Ajouter</button>
+                <form method="POST" >
+                    Titre : <br/>
+                    <input type="hidden" value="<?= $valueIdArticle ?>" name="idArticle" placeholder="">
+                    <input type="text" value="<?= $valueTitre ?>" name="titreArticle" placeholder="Titre de l'article" required/><br/>
+                    Contenu : <br/>
+                    <textarea name="contenuArticle" class="form-label"required ><?= $valueArea ?></textarea><br/>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Publier" />
+                    <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
+                    <a class="btn btn-success active" href="delete.php?id=<?= $valueIdArticle ?>">Supprimer</a>
                 </form>
+            
+            
+                <div class="card p-4 w-50">
+                    <form method="POST">
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group w-50">
+                                <label for="input-lieu">Catégorie</label><br/>
+                                <select id="input-lieu" name="nomCategorie">
+                                    <option>Cake</option>
+                                    <option>Sweets</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group w-50">
+                                <label for="input-statutArticle">Statue Article</label><br/>
+                                <select id="input-statutArticle" name="statueArticle">
+                                    <option>Publié</option>
+                                    <option>Brouillon</option>
+                                    <option>Corbeille</option>
+                                </select>
+                        </div>
+
+                            <div class="form-group w-50">
+                                <label for="input-groupe">tags</label><br/>
+                                <select id="input-groupe" name="nomTag">
+                                    <option >Jelly</option>
+                                    <option>Fudge</option>
+                                    <option>Beans</option>
+                                </select>
+                            </div>
+                        </div>  
+                    <button type="submit" class="mt-3 btn btn-primary">Ajouter</button>
+                    </form>
+                </div>
             </div>
-        </div>
     </body>
 </html>
 
