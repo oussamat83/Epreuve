@@ -2,8 +2,11 @@
   require "connect.php";
   require "helpers.php";
 
-$stmt = $db->query("SELECT * from article");
+$stmt = $db->query("SELECT * from article
+                    INNER JOIN categorie on categorie.idCategorie = article.idCategorie");
+
 $article = $stmt->fetchAll();
+
 ?>
 <html lang="fr">
 <head>
@@ -35,10 +38,10 @@ $article = $stmt->fetchAll();
                     <td><?= $value["titreArticle"] ?></td>
                     <td><?= afficheDateFR($value["dateCreationArticle"]) ?></td>
                     <td><?= $value["statueArticle"] ?></td>
-                    <td><?= $value["idCategorie"] ?></td>
+                    <td><?= $value["nomCategorie"] ?></td>
                     <td></td>
                     <td>
-                        <a class="btn btn-success active" href="modify.php?id=<?= $value["idArticle"] ?>">Modifier</a>
+                        <a class="btn btn-success active" href="modifyPage.php?id=<?= $value["idArticle"] ?>">Modifier</a>
                     </td>
                 </tr>
             <?php } ?>
