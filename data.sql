@@ -1,3 +1,16 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: Catégorie
+#------------------------------------------------------------
+
+CREATE TABLE Categorie(
+        idCategorie          Int  Auto_increment  NOT NULL ,
+        nomCategorie         Varchar (255) NOT NULL ,
+        descriptionCategorie Varchar (255) NOT NULL
 	,CONSTRAINT Categorie_PK PRIMARY KEY (idCategorie)
 )ENGINE=InnoDB;
 
