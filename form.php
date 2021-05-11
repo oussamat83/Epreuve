@@ -32,98 +32,110 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Créer un article</title>
-        <link rel="stylesheet" href="style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un article</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
 
-    <body>
-            <form method="POST">
-                <div class="container d-flex flex-column align-items-center">
-                    <h1>Création d'un article</h1>
-                        <?php foreach($errors as $error){ ?>
-                            <div class="alert alert-warning">
-                                <?= $error ?>
-                            </div>
-                        <?php } ?>
-                    
-                        Titre : <br/>
-                        <input type="text" name="titreArticle" placeholder="Titre de l'article" required/><br/>
-                        Contenu : <br/>
-                        <textarea name="contenuArticle" placeholder="Super contenu..." required ></textarea><br/>
-                        <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
-                    
-        
-        
-                        
-                            <div class="card p-4 w-50">
-                                
-                                <div class="d-flex justify-content-between">
-                                    <div class="form-group w-50">
-                                        <label for="input-lieu">Catégorie</label><br/>
-                                        <select id="input-lieu" name="nomCategorie">
-                                            <option>Cake</option>
-                                            <option>Sweets</option>
-                                        </select>
-                                    </div>
+<body>
 
-                                    <div class="form-group w-50">
-                                        <label for="">Statut Article</label><br/>
-                                        <select id="" name="statueArticle">
-                                            <option>Publié</option>
-                                            <option>Brouillon</option>
-                                            <option>Corbeille</option>
-                                        
-                                        </select>
+    <div class="box">
+
+        <div class="container">
+            <h1>Création d'un article</h1>
+        </div>
+
+        <form method="POST">
+
+
+            <div class="d-flex">
+                <div class="container col-10">
+
+                    <?php foreach($errors as $error){ ?>
+                    <div class="alert alert-warning">
+                        <?= $error ?>
+                    </div>
+                    <?php } ?>
+
+                    <input type="text" class="form-control" name="titreArticle" placeholder="Titre de l'article"
+                        required /><br />
+
+                    <textarea class="form-control" rows="20" name="contenuArticle" placeholder="Super contenu..."
+                        required></textarea><br />
+
+                </div>
+
+                <div class="container col-2">
+
+                    <div class="card p-2 mb-3">
+
+                        <div class="mb-3">
+                            <input type="submit" name="submit" class="btn btn-primary" value="Publier" />
+                        </div>
+                        <div>
+                            <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="card p-2">
+
+                        <div class="form-group w-50">
+                            <label for="input-lieu">Catégorie</label><br />
+                            <select id="input-lieu" name="nomCategorie">
+                                <option>Cake</option>
+                                <option>Sweets</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group w-50">
+
+                            <label for="">Statut Article</label><br />
+                            <select id="" name="statueArticle">
+                                <option>Publié</option>
+                                <option>Brouillon</option>
+                                <option>Corbeille</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group w-50">
+
+                            <label for="">tags</label><br />
+                            <select id="" name="nomTag">
+                                <option>Jelly</option>
+                                <option>Fudge</option>
+                                <option>Beans</option>
+                            </select>
+
+                            <div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Broullion</label>
                                 </div>
-                                <div class="form-group w-50">
-                                    <label for="">tags</label><br/>
-                                    <select id="" name="nomTag">
-                                        <option >Jelly</option>
-                                        <option>Fudge</option>
-                                        <option>Beans</option>
-                                    
-                                    </select>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Publié</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Supprimés</label>
                                 </div>
 
                                 <button type="submit" class="mt-3 btn btn-primary">Ajouter</button>
                             </div>
+                        </div>
+                    </div>
                 </div>
-            </form>
+            </div>
+        </form>
+    </div>
 
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Broullion</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Publié</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" >
-                <label class="form-check-label" for="flexSwitchCheckChecked">Supprimés</label>
-            </div>
-
-            <div class="form-group w-50">
-                <label for="input-groupe">tags</label><br/>
-                    <select id="input-groupe" name="nomTag">
-                        <option >Jelly</option>
-                        <option>Fudge</option>
-                        <option>Beans</option>
-                    </select>
-            </div>
-            <div class="form-group w-50">
-                <label for="input-lieu">Catégorie</label><br/>
-                    <select id="input-lieu" name="nomCategorie">
-                        <option>Cake</option>
-                        <option>Sweets</option>
-                    </select>
-            </div>
-    </body>
+</body>
 
 </html>
-
