@@ -106,7 +106,7 @@ $errors = [];
                     </div>
                     <?php } ?>
 
-                    <form method="POST">
+                    <form method="POST"> 
 
                     <input type="hidden" class="form-control" value="<?= $idArticleToEdit ?>" name="idArticle"
                             placeholder="Titre de l'article" />
