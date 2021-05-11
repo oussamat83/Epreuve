@@ -58,3 +58,17 @@ CREATE TABLE Contenir(
 	,CONSTRAINT Contenir_Article0_FK FOREIGN KEY (idArticle) REFERENCES Article(idArticle)
 )ENGINE=InnoDB;
 
+ ALTER TABLE `contenir`
+ DROP FOREIGN KEY `Contenir_Article0_FK`; 
+ ALTER TABLE `contenir` 
+ ADD CONSTRAINT `Contenir_Article0_FK` 
+ FOREIGN KEY (`idArticle`) 
+ REFERENCES `article`(`idArticle`) 
+ ON DELETE CASCADE ON UPDATE CASCADE; 
+ ALTER TABLE `contenir` 
+ DROP FOREIGN KEY `Contenir_Tag_FK`; 
+ ALTER TABLE `contenir` 
+ ADD CONSTRAINT `Contenir_Tag_FK` 
+ FOREIGN KEY (`idTag`) 
+ REFERENCES `tag`(`idTag`) 
+ ON DELETE CASCADE ON UPDATE CASCADE;
