@@ -43,6 +43,8 @@ $errors = [];
 //        }
 //    }
 
+
+
    if($_SERVER["REQUEST_METHOD"] === "POST"){
     if(isset($_POST["titreArticle"])){
         $statueArticle = "Publié";
@@ -51,19 +53,23 @@ $errors = [];
         $stmt = $db->prepare("
         UPDATE article SET 
         titreArticle = :titreArticle, 
+        statueArticle = :statueArticle, 
         contenuArticle = :contenuArticle, 
-        statueArticle = :statueArticle 
+        idCategorie = (SELECT idCategorie FROM categorie WHERE nomCategorie = :nomCategorie)
         WHERE idArticle = :idArticle;
         ");
         $stmt->execute([
             ':titreArticle' => htmlspecialchars($_POST["titreArticle"]), 
             ':contenuArticle' => htmlspecialchars($_POST["contenuArticle"]), 
-            ':statueArticle' => $statueArticle, 
+            ':statueArticle' => htmlspecialchars($_POST["statueArticle"]), 
+            ':nomCategorie' => htmlspecialchars($_POST["nomCategorie"]),
             ':idArticle' => htmlspecialchars($_POST["idArticle"])
          ]);
 
     }
-    header("Location: ./index.php");
+   header("Location: ./index.php");
+    // echo "alexandre le miboune que je goum ";
+    // print_r($_POST);
 }
 
 
@@ -101,8 +107,12 @@ $errors = [];
                     <?php } ?>
 
                     <form method="POST">
-                        <input type="text" class="form-control" value="<?= $valueTitre?>" name="titreArticle" placeholder="Titre de l'article"
-                            required /><br />
+
+                    <input type="hidden" class="form-control" value="<?= $idArticleToEdit ?>" name="idArticle"
+                            placeholder="Titre de l'article" />
+
+                        <input type="text" class="form-control" value="<?= $valueTitre ?>" name="titreArticle"
+                            placeholder="Titre de l'article" required /><br />
 
                         <textarea class="form-control" rows="20" name="contenuArticle" placeholder="Super contenu..."
                             required><?= $valueArea?></textarea><br />
@@ -120,8 +130,8 @@ $errors = [];
                         <div>
                             <input type="submit" name="submit" class="btn btn-primary" value="sauvegarder" />
                         </div>
-                        <div>
-                            <a class="btn btn-success active bi bi-trash"
+                        <div class=" p-2">
+                            <a class="btn btn-danger active bi bi-trash"
                                 href="delete.php?id=<?= $valueIdArticle ?>"><svg xmlns="http://www.w3.org/2000/svg"
                                     width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path
