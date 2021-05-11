@@ -87,8 +87,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                     <div class="card p-2">
 
                         <div class="form-group w-50">
-                            <label for="input-lieu">Catégorie</label><br />
-                            <select id="input-lieu" name="nomCategorie">
+                            <label for="input-categorie">Catégorie</label><br />
+                            <select id="input-categorie" name="nomCategorie">
                                 <option>Cake</option>
                                 <option>Sweets</option>
                             </select>
